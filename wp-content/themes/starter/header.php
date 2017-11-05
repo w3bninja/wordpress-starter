@@ -219,12 +219,13 @@
             		<div class="mobile-navigation pull-left"> <a class="nav-mobile-control btn btn-primary toggle-menu menu-left push-body"><i class="fa fa-bars"></i></a> </div>
             	</div>
             	<div class="col-xs-8 col-sm-12">
+            	
             		<div class="logo">
-					  <h1 title="Company Name"> <a href="/" title="Company Name"> <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/logo.png" class="img-responsive"> </a> </h1>
+					  <h1 title="Company Name"> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php bloginfo( 'name' ); ?> | <?php echo $description; /* WPCS: xss ok. */ ?>"> <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/logo.png" class="img-responsive"> </a> </h1>
 					</div>
             	</div>
             	<div class="col-xs-2 hidden-sm hidden-md hidden-lg">
-            		<a href="tel:(800) 401–4277" class="btn btn-primary pull-right"><i class="fa fa-phone"></i></a>
+            		<a href="tel:(555) 555–5555" class="btn btn-primary pull-right"><i class="fa fa-phone"></i></a>
             	</div>
             </div>
             
@@ -237,68 +238,13 @@
                 <div class="navigation col-md-12">
                   <div class="navigation-inner main-nav clearfix">
                     <div id="Menu">
-                      <ul id="MenuList" class="nav nav-pills nav-justified">
-                        <li  ><a href="/">Home</a></li>
-                        <li  ><a href="">Components</a>
-                          <ul id="MenuList" class="nav nav-pills nav-justified">
-                            <li  ><a href="/pages/sidebars">Sidebars</a></li>
-                            <li  ><a href="/pages/headers">Banners &amp; Headers</a></li>
-                            <li  ><a href="/pages/tabs">Tabs &amp; Accordions</a></li>
-                            <li  ><a href="/pages/popups">Popups</a></li>
-                            <li  ><a href="/pages/search">Site Search</a></li>
-                            <li  ><a href="/pages/menus">Menus &amp; Navigation</a>
-                              <ul id="MenuList" class="nav nav-pills nav-justified">
-                                <li  ><a href="">Sub Item 1</a></li>
-                              </ul>
-                            </li>
-                            <li  ><a href="/pages/social-share">Social Share</a></li>
-                            <li  ><a href="/pages/maps">Maps</a>
-                              <ul id="MenuList" class="nav nav-pills nav-justified">
-                                <li  ><a href="/pages/maps/directions">Directions</a></li>
-                                <li  ><a href="/pages/maps/multiple-pins">Multiple Pins</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                        <li  ><a href="">Layouts</a>
-                          <ul id="MenuList" class="nav nav-pills nav-justified">
-                            <li  ><a href="">Modules</a>
-                              <ul id="MenuList" class="nav nav-pills nav-justified">
-                                <li  ><a href="/blogs">Blog</a></li>
-                                <li  ><a href="/pages/faqs">FAQs</a></li>
-                                <li  ><a href="/pages/gallery">Photo Galleries</a></li>
-                                <li  ><a href="/pages/comments">Comments</a></li>
-                              </ul>
-                            </li>
-                            <li  ><a href="">WebApps</a>
-                              <ul id="MenuList" class="nav nav-pills nav-justified">
-                                <li  ><a href="/pages/bios">Bios</a></li>
-                                <li  ><a href="">Data Manipulation</a>
-                                  <ul id="MenuList" class="nav nav-pills nav-justified">
-                                    <li  ><a href="/pages/filtering">Filtering</a></li>
-                                    <li  ><a href="/pages/grouping">Grouping</a></li>
-                                    <li  ><a href="/pages/directory">Directory</a></li>
-                                  </ul>
-                                </li>
-                                <li  ><a href="/pages/location-finder">Location Finder</a></li>
-                                <li  ><a href="/pages/careers">Careers/Jobs</a></li>
-                                <li  ><a href="/pages/product-service">Product/Service</a></li>
-                                <li  ><a href="/pages/calendar">Events/Calendar</a></li>
-                              </ul>
-                            </li>
-                            <li  ><a href="">Pages</a>
-                              <ul id="MenuList" class="nav nav-pills nav-justified">
-                                <li  ><a href="/pages/contact">Contact</a></li>
-                                <li  ><a href="/pages/landing-page">Landing Page</a></li>
-                                <li  ><a href="/pages/about">About</a></li>
-                                <li  ><a href="/404">404</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                        <li  ><a href="/pages/style-guide">Style Guide</a></li>
-                        <li  ><a href="/pages/store">Store</a></li>
-                      </ul>
+                     <?php
+						wp_nav_menu( array(
+							'theme_location' => 'menu-1',
+							'menu_id'        => 'MenuList',
+							'menu_class'	=> 'nav nav-pills nav-justified',
+						) );
+					?>
                     </div>
                   </div>
                 </div>
@@ -346,38 +292,3 @@
 </div>
 <div class="content-inner container">
 	<div class="content">
-
-
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'starter' ); ?></a>
-
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'starter' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
